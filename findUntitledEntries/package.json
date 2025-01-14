@@ -1,0 +1,17 @@
+{
+  "name": "finduntitledentries",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "contentful": "^11.4.3",
+    "contentful-management": "^11.41.0"
+  },
+  "type": "module"
+}
