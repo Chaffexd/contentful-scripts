@@ -31,7 +31,7 @@ const fetchFunction = async () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer OYUyxBkiK6II8CKMlDSShgFCMcfusNs7X1-kqhCFycA",
+        Authorization: `Bearer ${process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN_NA}`,
       },
       body: JSON.stringify({ query: richTextQuery }),
     }
