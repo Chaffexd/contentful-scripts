@@ -1,5 +1,7 @@
 import { createClient } from "contentful";
 import contentful from "contentful-management";
+import dotenv from "dotenv";
+dotenv.config({ path: "/Users/shane.chaffe/Documents/Code/codeSnippetsCtfl/.env.local" });
 
 // This is for Philips
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
@@ -29,12 +31,10 @@ const fetchEntriesWithoutTitleAndDelete = async () => {
 
     // console.log("Content Types =", contentTypes);
 
-    const contentTypeInfo = contentTypes.items.map(
-      (contentType) => ({
-        id: contentType.sys.id,
-        displayField: contentType.displayField
-      })
-    );
+    const contentTypeInfo = contentTypes.items.map((contentType) => ({
+      id: contentType.sys.id,
+      displayField: contentType.displayField,
+    }));
 
     const allUntitledEntries = [];
 
@@ -62,21 +62,21 @@ const fetchEntriesWithoutTitleAndDelete = async () => {
     }
 
     console.log(`✅ All Untitled Entries Collected:`, allUntitledEntries);
-    console.log(`🚨 There are ${allUntitledEntries.length} entries untitled`);
+    console.log(`🚨 There are ${allUntitledEntries.length} untitled entries`);
 
     // Delete each untitled entry
-    // for (const entryId of allUntitledEntries) {
-    //   try {
-    //     await managementClient.entry.delete({
-    //       spaceId,
-    //       environmentId,
-    //       entryId,
-    //     });
-    //     console.log(`🗑️ Successfully deleted entry: ${entryId}`);
-    //   } catch (error) {
-    //     console.error(`❌ Error deleting entry ${entryId}:`, error);
-    //   }
-    // }
+    for (const entryId of allUntitledEntries) {
+      try {
+        await managementClient.entry.delete({
+          spaceId,
+          environmentId,
+          entryId,
+        });
+        console.log(`🗑️ Successfully deleted entry: ${entryId}`);
+      } catch (error) {
+        console.error(`❌ Error deleting entry ${entryId}:`, error);
+      }
+    }
   } catch (error) {
     console.error("Error fetching entries:", error);
   }
