@@ -3,7 +3,7 @@ import contentful from "contentful-management";
 // Requires Space ID, Env, and Taxonomy concept ID or concept SCHEME ID
 const spaceId = "y44f0yph0jif";
 const environmentId = "stg";
-const taxonomyLink = {
+const taxonomyScheme = {
   sys: {
     type: "Link",
     linkType: "TaxonomyConceptScheme",
@@ -53,7 +53,7 @@ async function addTaxonomyToContentTypes() {
       }
 
       // Add taxonomy link
-      contentType.metadata.taxonomy.push(taxonomyLink);
+      contentType.metadata.taxonomy.push(taxonomyScheme);
 
       // Update the content type
       const updatedContentType = await plainClient.contentType.update(
